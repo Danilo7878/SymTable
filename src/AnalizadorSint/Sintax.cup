@@ -1,0 +1,285 @@
+package AnalizadorSint;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+    }
+:};
+
+terminal Truncate,Drop,Create,Database,User,Index,View,If,Exists,Table,On,Primary,Names,File,Size,Collate,Current,
+Unique,Clustered,Nonclustered,Asc,Desc,Include,Where,And,In,Is,Not,No,Or,Null,As,Constraint,Default,Identity,
+For,Replication,Rowguidcol,IntR,BitR,FloatR,Varchar,Key,Foreign,References,Delete,Update,Set,Action,Cascade,Check,
+Go,Id,Bit,Int,Float,String,Punto,Coma,Punto_Coma,Igual,Parentesis_a,Parentesis_c,Mas,Menos,Asterisco,Dividir,Comparador,
+Alter,Cursor,Close,Read,Commit,Write,Global,Local,Off,Only,Add,Column,Nocheck,All,Insert,Top,Percent,Into,Openquery,Values,
+Incrementador,Error,Var,From,Distinct,Cuadro,Bracket_a,Bracket_c,Select,Avg,Min,Max,Count,Sum,Join,Inner,Left,Outer,Right,Full,
+Group,Order,By,Begin,Tran,Transaction,Rollback,Save;
+
+non terminal  INICIO,SENTENCIA,DML,DDL,TCL,TSQL,SELECT,DELETE,IF_EXISTS,SIZE,TAMAÑO,
+              INSERT,UPDATE,DROP,TRUNCATE,CREATE,ALTER,TABLENAME,TABLE_NAMES,
+              DATABASE_NAMES,D_DATABASE,D_INDEX,D_VIEW,D_USER,D_TABLE,D_SENTENCE,
+              C_DATABASE,C_INDEX,C_VIEW,C_TABLE,C_USER,DATABASE_ON,COLLATE, 
+              PRIMARY,FILESPEC,INDEX_ON,INDEX_SIN_ON,WHERE_INDEX,UNIQUE,CLUSTERED, 
+              ON,INCLUDE,COLUMN_NAMES_ASC,ASC,FILTER,CONJUNCT,AS,COLUMN_DEFINITION,
+              DISJUNCT,COMPARACION,CONSTANT,CONSTANTS,COMPARADOR,CONSTRAINT,DEFAULT,
+              C_TABLE_OPTION,C_TABLE_OPTIONS,DATA_TYPE,COMPUTED_DEFINITION,TABLE_CONSTRAINT,
+              TABLE_INDEX,FIN,IDENTITY,SEED,NOT_NULL,ROWGUIDCOL,TYPE_SIZE,NOT_FOR_REPLICATION,
+              ENTERO,COLUMN_CONS,CONSTRAINT_O_NO,REF_COLUMN,OR_ALTER,COLUMN_NAMES,
+              CONSTRAINT_DEFINITION,COLUMN_INDEX,PRIMARY_UNIQUE,FOREIGN_KEY,SCHEMA,TYPE,
+              ON_DELETE,ON_UPDATE,ON_OPTIONS,COLUMN_EXPRESION,T,F,TABLE_CONSTRAINT_DEFINITION,
+              A_SENTENCE,A_DATABASE,A_TABLE,A_VIEW,A_USER,A_INDEX,ID_CURRENT, ALTER_DATABASE_OPTIONS,
+              SET, SET_OPTIONS,LOCAL_GLOBAL,ON_OFF,ADD_FILE,FILESPEC_2,FILENAME,NAME,ALTER_COLUMN,ADD_COLUMN,
+              DROP_CONSTRAINT,NULL_OR_NOT,ROWGUID_REPLICATION,ADD_DROP,ALTER_TABLE_OPTIONS, CONSTRAINT_2,CHECK_CONSTRAINT,
+              ALL,NOCHECK,TOP,PERCENT,INTO,OBJECT,TABLENAME_2,COLUMN_LIST,VALUES,VALUES_OPTIONS,VALUES_OPTION,VALUES_2,
+              VAR_TABLENAME,ASIGNAR_2,ASIGNAR,SET_COLUMN,SET_VAR,ALL_DISTINCT,SELECT_LIST,CAMPO_AS,CAMPO,ALIAS,ID_M,METHOD,METHOD_NAME,
+              PARAMETROS,FROM,JOINS,JOIN,JOIN_TYPE,TABLENAME_3,GROUP_BY,ORDER_BY,FROM_2,BEGIN,COMMIT,ROLLBACK,SAVEPOINT,TRAN;
+
+start with INICIO;
+
+INICIO ::= SENTENCIA FIN;
+SENTENCIA ::= DML|DDL|TCL|TSQL;
+
+TCL ::= BEGIN|COMMIT|ROLLBACK|SAVEPOINT;
+BEGIN ::= Begin TRAN Var|Begin TRAN Var Id;
+TRAN::= Tran|Transaction;
+COMMIT ::= Commit TRAN|Commit|Commit TRAN Var|Commit TRAN Id;
+ROLLBACK ::= Rollback TRAN|Rollback TRAN Var|Rollback TRAN Id;
+SAVEPOINT ::= Save TRAN|Save TRAN Var|Save TRAN Id;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//DML------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+
+DML ::= SELECT|DELETE|UPDATE|INSERT;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//SELECT --------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
+
+SELECT ::= Select ALL_DISTINCT TOP SELECT_LIST FROM WHERE_INDEX GROUP_BY ORDER_BY|Select TOP SELECT_LIST FROM WHERE_INDEX GROUP_BY ORDER_BY;
+ALL_DISTINCT ::= All|Distinct;
+SELECT_LIST ::= CAMPO_AS| CAMPO_AS Coma SELECT_LIST;
+CAMPO_AS ::= CAMPO ALIAS;
+CAMPO ::= Asterisco|Id Punto Asterisco|Id Punto Id|Id Cuadro Id|METHOD|Id;
+ALIAS ::= As Id| Id | As Bracket_a ID_M Bracket_c;
+ID_M ::= Id|Id ID_M;
+METHOD ::= METHOD_NAME Parentesis_a PARAMETROS Parentesis_c;
+METHOD_NAME ::= Avg|Min|Max|Count|Sum;
+PARAMETROS ::= COLUMN_EXPRESION| COLUMN_EXPRESION Coma PARAMETROS;
+FROM ::= From TABLENAME ALIAS|From TABLENAME JOINS|From TABLENAME ALIAS JOINS|From TABLENAME;
+JOINS ::= JOIN|JOIN JOINS|Parentesis_a JOIN Parentesis_c|Parentesis_a JOIN JOINS Parentesis_c;
+JOIN ::= JOIN_TYPE CAMPO_AS On CAMPO Igual CAMPO| JOIN_TYPE CAMPO_AS On TABLENAME Comparador TABLENAME;
+JOIN_TYPE ::= Join|Full Outer Join|Full Join|Left Join|Left Outer Join|Right Join|Right Outer Join| Inner Join;  
+GROUP_BY ::= Group By DATABASE_NAMES|;
+ORDER_BY ::= Order By COLUMN_NAMES_ASC|;
+//---------------------------------------------------------------------------------------------------------------------------------
+//INSERT ---------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+INSERT ::= Insert TOP INTO OBJECT COLUMN_LIST VALUES_2;
+TOP::= Top Parentesis_a COLUMN_EXPRESION Parentesis_c PERCENT|;
+PERCENT ::= Percent|;
+INTO ::= Into|;
+OBJECT ::= TABLENAME_2|Openquery Parentesis_a Id Coma String Parentesis_c;
+TABLENAME_2 ::= Id|Id Punto Id|Id Punto Id Punto Id|Id Punto Id Punto Id Punto Id;
+COLUMN_LIST ::= Parentesis_a DATABASE_NAMES Parentesis_c|;
+VALUES_2 ::= Values VALUES|Default Values;//|SELECT
+VALUES ::= Parentesis_a VALUES_OPTIONS Parentesis_c |Parentesis_a VALUES_OPTIONS Parentesis_c Coma VALUES;
+VALUES_OPTIONS ::= VALUES_OPTION|VALUES_OPTION Coma VALUES_OPTIONS;
+VALUES_OPTION ::= Default Values|Null|COLUMN_EXPRESION;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//UPDATE --------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
+
+UPDATE ::= TOP VAR_TABLENAME Set ASIGNAR_2 FROM_2 WHERE_INDEX;
+VAR_TABLENAME ::= TABLENAME_2|Var;
+ASIGNAR_2 ::= ASIGNAR|ASIGNAR Coma ASIGNAR_2;
+ASIGNAR ::= SET_COLUMN|SET_VAR;
+SET_COLUMN ::= Id Igual COLUMN_EXPRESION|Id Igual Default|Id Igual Null|Id Incrementador COLUMN_EXPRESION;
+SET_VAR ::= Var Igual COLUMN_EXPRESION| Var Incrementador COLUMN_EXPRESION|Var Igual SET_COLUMN;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//DELETE --------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------
+
+DELETE ::= TOP From VAR_TABLENAME|TOP VAR_TABLENAME FROM_2 WHERE_INDEX;
+FROM_2 ::= FROM|;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//DDL------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+
+DDL ::= DROP|TRUNCATE|CREATE|ALTER;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//TRUNCATE---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+
+TRUNCATE ::= Truncate Table TABLENAME;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//DROP---------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------
+
+DROP ::= Drop D_SENTENCE;
+D_SENTENCE ::= D_DATABASE|D_INDEX|D_VIEW|D_USER|D_TABLE;
+D_DATABASE ::= Database IF_EXISTS DATABASE_NAMES;
+D_TABLE ::= Table IF_EXISTS TABLE_NAMES;
+D_VIEW ::= View IF_EXISTS TABLE_NAMES;
+D_USER ::= User IF_EXISTS Id;
+D_INDEX ::= Index IF_EXISTS INDEX_ON|Index IF_EXISTS INDEX_SIN_ON;
+INDEX_ON ::= Id On TABLENAME|Id On TABLENAME Coma INDEX_ON;
+INDEX_SIN_ON ::= Id Punto Id | Id Punto Id Punto Id | Id Punto Id Coma INDEX_SIN_ON|Id Punto Id Punto Id Coma INDEX_SIN_ON;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//CREATE ---------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+CREATE ::= C_DATABASE|C_INDEX|C_VIEW|C_TABLE|C_USER;
+
+//CREATE DATABASE ---------------------------------------------------------------------------------------------------------------------------------
+
+C_DATABASE ::= Create Database Id DATABASE_ON COLLATE;
+DATABASE_ON ::= On PRIMARY FILESPEC|;
+COLLATE ::= Collate Id|;
+PRIMARY ::= Primary|;
+FILESPEC ::= Parentesis_a Names Igual NAME Coma File Igual String SIZE Parentesis_c|Parentesis_a Names Igual NAME Coma File Igual String SIZE Parentesis_c Coma FILESPEC;
+SIZE ::= Coma Size Igual Int|Coma Size Igual Bit;
+
+//CREATE USER ---------------------------------------------------------------------------------------------------------------------------------
+
+C_USER ::= Create User Id;
+
+//CREATE INDEX ---------------------------------------------------------------------------------------------------------------------------------
+
+C_INDEX ::= Create UNIQUE CLUSTERED Index Id On TABLENAME Parentesis_a COLUMN_NAMES_ASC Parentesis_c INCLUDE WHERE_INDEX ON;
+UNIQUE ::= Unique|;
+CLUSTERED ::= Clustered|Nonclustered|;
+COLUMN_NAMES_ASC ::= Id ASC|Id ASC Coma COLUMN_NAMES_ASC;
+ASC ::= Asc|Desc|;
+INCLUDE ::= Include Parentesis_a DATABASE_NAMES Parentesis_c|;
+WHERE_INDEX ::= Where FILTER|;
+FILTER ::= CONJUNCT | CONJUNCT And FILTER |CONJUNCT Or FILTER;
+CONJUNCT ::= DISJUNCT|COMPARACION;
+DISJUNCT ::= Id In Parentesis_a CONSTANTS Parentesis_c;
+CONSTANTS ::= CONSTANT|CONSTANT Coma CONSTANTS;
+CONSTANT ::= Int|String|Bit|Float|Null;
+COMPARACION ::= COLUMN_EXPRESION COMPARADOR COLUMN_EXPRESION|TABLENAME_3 COMPARADOR COLUMN_EXPRESION;
+COMPARADOR ::= Comparador|Igual|Is|Is Not;
+ON ::= On Id Parentesis_a Id Parentesis_c|On Id|On Primary|;
+
+//CREATE TABLE ---------------------------------------------------------------------------------------------------------------------------------
+
+C_TABLE ::= Create Table TABLENAME AS Parentesis_a C_TABLE_OPTIONS Parentesis_c ON;
+AS ::= As Id|;
+C_TABLE_OPTIONS ::= C_TABLE_OPTION | C_TABLE_OPTION Coma C_TABLE_OPTIONS;
+C_TABLE_OPTION ::= COLUMN_DEFINITION|COMPUTED_DEFINITION|TABLE_CONSTRAINT|TABLE_INDEX;
+COLUMN_DEFINITION ::= Id DATA_TYPE COLLATE CONSTRAINT IDENTITY NOT_NULL ROWGUIDCOL COLUMN_CONS COLUMN_INDEX;
+DATA_TYPE ::= TYPE TYPE_SIZE;
+TYPE ::= IntR|FloatR|Varchar|BitR;
+TYPE_SIZE ::= Parentesis_a TAMAÑO Parentesis_c|;
+TAMAÑO ::= Int|Int Coma Int|Id;
+CONSTRAINT ::= DEFAULT|;
+DEFAULT ::= Default CONSTANT;
+IDENTITY ::= Identity SEED|;
+SEED ::= Parentesis_a ENTERO Coma ENTERO Parentesis_c|;
+ENTERO ::= Int|Bit;
+NOT_NULL ::= Null|Not Null|Not For Replication Null| Not For Replication Not Null|Not For Replication|;
+ROWGUIDCOL ::= Rowguidcol|;
+COLUMN_CONS ::= CONSTRAINT_O_NO CONSTRAINT_DEFINITION|;
+CONSTRAINT_O_NO ::= Constraint Id|;
+CONSTRAINT_DEFINITION ::= PRIMARY_UNIQUE CLUSTERED ON|FOREIGN_KEY References SCHEMA REF_COLUMN ON_DELETE NOT_FOR_REPLICATION|Check NOT_FOR_REPLICATION Parentesis_a FILTER Parentesis_c;
+PRIMARY_UNIQUE ::= Primary Key|Unique;
+FOREIGN_KEY ::= Foreign Key|;
+SCHEMA ::= Id Punto Id| Id;
+REF_COLUMN ::= Parentesis_a DATABASE_NAMES Parentesis_c|;
+ON_DELETE ::= On Delete ON_OPTIONS|On Delete ON_OPTIONS On Update ON_OPTIONS| On Update ON_OPTIONS|;
+ON_OPTIONS ::= No Action|Cascade|Set Null|Set Default;
+NOT_FOR_REPLICATION ::= Not For Replication|;
+COLUMN_INDEX ::= Index CLUSTERED ON|;
+COMPUTED_DEFINITION ::= Id As COLUMN_EXPRESION CONSTRAINT_DEFINITION|Id As COLUMN_EXPRESION;
+COLUMN_EXPRESION ::= COLUMN_EXPRESION Mas T|COLUMN_EXPRESION Menos T|T;
+T ::= T Asterisco F| T Dividir F|F;
+F ::= Int|Float|Bit|String|Id|Var|Parentesis_a COLUMN_EXPRESION Parentesis_c;
+TABLE_CONSTRAINT ::= CONSTRAINT_O_NO TABLE_CONSTRAINT_DEFINITION;
+TABLE_CONSTRAINT_DEFINITION ::= PRIMARY_UNIQUE CLUSTERED Parentesis_a COLUMN_NAMES_ASC Parentesis_c ON|FOREIGN_KEY Parentesis_a DATABASE_NAMES Parentesis_c References Id REF_COLUMN ON_DELETE ON_UPDATE NOT_FOR_REPLICATION|Check NOT_FOR_REPLICATION FILTER;
+TABLE_INDEX ::= Index CLUSTERED Parentesis_a COLUMN_NAMES_ASC Parentesis_c ON;
+
+//CREATE VIEW-----------------------------------------------------------------------------------------------------------------------
+
+C_VIEW ::= Create OR_ALTER View TABLENAME COLUMN_NAMES As SELECT;
+OR_ALTER ::= Or Alter|;
+COLUMN_NAMES ::= Parentesis_a DATABASE_NAMES Parentesis_c|;
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//ALTER---------------------------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+ALTER ::= Alter A_SENTENCE;
+A_SENTENCE ::= A_DATABASE|A_TABLE|A_VIEW|A_USER|A_INDEX;
+
+//ALTER DATABASE-----------------------------------------------------------------------------------------------------------------------
+
+A_DATABASE ::= Database ID_CURRENT ALTER_DATABASE_OPTIONS;
+ALTER_DATABASE_OPTIONS ::= COLLATE|Add File ADD_FILE|SET;
+ADD_FILE ::= FILESPEC_2|FILESPEC_2 Coma ADD_FILE;
+FILESPEC_2 ::= Parentesis_a Names Igual NAME FILENAME Parentesis_c;
+FILENAME ::= Coma File Igual String SIZE|SIZE|;
+SET ::= Set SET_OPTIONS | Set SET_OPTIONS Coma SET;
+SET_OPTIONS ::= Cursor Close On Commit ON_OFF|Cursor Default LOCAL_GLOBAL|Read Only|Read Write;
+LOCAL_GLOBAL ::= Local|Global;
+ON_OFF ::= On|Off;
+ID_CURRENT ::= Id|Current;
+
+//ALTER USER--------------------------------------------------------------------------------------------------------------------
+
+A_USER ::= User Id;
+
+//ALTER TABLE-----------------------------------------------------------------------------------------------------------------------
+
+A_TABLE ::= Table TABLENAME ALTER_TABLE_OPTIONS;
+ALTER_TABLE_OPTIONS ::= ALTER_COLUMN|ADD_COLUMN|DROP_CONSTRAINT|CHECK_CONSTRAINT;
+ALTER_COLUMN ::= Alter Column DATA_TYPE COLLATE NULL_OR_NOT|Alter Column ADD_DROP ROWGUID_REPLICATION;
+NULL_OR_NOT ::= Null|Not Null|;
+ADD_DROP ::= Add|Drop;
+ROWGUID_REPLICATION ::= Rowguidcol|Not For Replication;
+ADD_COLUMN ::= Add C_TABLE_OPTIONS;
+DROP_CONSTRAINT ::= Drop CONSTRAINT_2 IF_EXISTS DATABASE_NAMES;
+CONSTRAINT_2 ::= Constraint|Column|;
+CHECK_CONSTRAINT ::= NOCHECK Constraint ALL;
+NOCHECK ::= Check|Nocheck;
+ALL ::= All|DATABASE_NAMES;
+
+//ALTER VIEW-----------------------------------------------------------------------------------------------------------------------
+
+A_VIEW ::= View TABLENAME COLUMN_NAMES As SELECT;
+
+
+//ALTER INDEX-----------------------------------------------------------------------------------------------------------------------
+
+A_INDEX ::= Index All On TABLENAME| Index Id On TABLENAME;
+
+DATABASE_NAMES ::= Id|Id Coma DATABASE_NAMES;
+TABLE_NAMES ::= TABLENAME|TABLENAME Coma TABLE_NAMES;
+IF_EXISTS ::= If Exists|;
+TABLENAME ::= Id|Id Punto Id|Id Punto Id Punto Id;
+TABLENAME_3 ::= Id Punto Id|Id Punto Id Punto Id;
+NAME ::= String|Id;
+FIN ::= Punto_Coma|Go;
+
