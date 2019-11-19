@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/LexerCup.flex</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/Sintax.cup</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/AL_SQL_Main.java</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/MiniSQL.java</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/LexerCup.java</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/sym.java</file>
-            <file>file:/C:/Users/danil/Desktop/ASin-MiniSQL-master/ASin_SQL/src/AnalizadorSint/Lexer.flex</file>
+            <file>file:/C:/Users/danil/Desktop/ProyectoTabla/SymTable/src/AnalizadorSint/Lexer.flex</file>
+            <file>file:/C:/Users/danil/Desktop/ProyectoTabla/SymTable/src/AnalizadorSint/LexerCup.flex</file>
+            <file>file:/C:/Users/danil/Desktop/ProyectoTabla/SymTable/src/AnalizadorSint/Sintax.cup</file>
+            <file>file:/C:/Users/danil/Desktop/ProyectoTabla/SymTable/src/AnalizadorSint/LexerCup.java</file>
         </group>
     </open-files>
 </project-private>
