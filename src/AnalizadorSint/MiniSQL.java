@@ -166,6 +166,7 @@ public class MiniSQL extends javax.swing.JFrame {
             String erroresL = "";
             String erroresS = "";
             int LineaActual = 1;
+            boolean proc = false;
             
             while (true) {
             Tokens token = lexer.yylex();
@@ -187,7 +188,7 @@ public class MiniSQL extends javax.swing.JFrame {
                 switch (token) {
                     //No necesito saber su valor
                      case Float: case Bit: case Int:  case String: case Variable:
-                        sentencia+=token + " ";
+                        sentencia+=lexer.lexeme + " ";
                         break;
                     //No necesito hacer nada con ellos en el análisis sintáctico
                     case ComentarioSimple: case ComentarioMultilinea:
@@ -198,22 +199,39 @@ public class MiniSQL extends javax.swing.JFrame {
                             String TokenTruncado = lexer.lexeme.substring(0, 31);
                             erroresL+= "ALERTA: Indentificador Truncado|Valor: " + TokenTruncado + "|Linea: " + lexer.linea
                             + "|Columna Inicio: " + lexer.PrimeraColumna + "|Columna Fin: " + lexer.UltimaColumna + "\n";
+                            sentencia+= TokenTruncado + " ";
                         }
-                        sentencia+=token + " ";
+                        else
+                        {
+                            sentencia+= lexer.lexeme + " ";
+                        }
                         break;
                     //Aquí si necesito el valor específico del token
                     case Simbolo: case Palabra_Reservada:
-                        if (lexer.lexeme.equals("GO")||lexer.lexeme.equals(";")) {
-                            String Comprobar = sentencia.replaceAll("\n", "");
-                            if (!Comprobar.equals("")) {
-                                sentencia+=lexer.lexeme;
-                                String nuevaSentencia = sentencia;
-                                ListadoDeSentencias.add(nuevaSentencia);
-                                sentencia = "";
-                            }                           
+                     
+                        if (lexer.lexeme.equals("PROCEDURE")||lexer.lexeme.equals("PROC")) {
+                            proc = true;
+                        }
+                        else if (lexer.lexeme.equals("END")) {
+                            proc = false;
+                        }
+                        
+                        if (!proc) {
+                                if (lexer.lexeme.equals("GO")||lexer.lexeme.equals(";")) {
+                                    String Comprobar = sentencia.replaceAll("\n", "");
+                                    if (!Comprobar.equals("")) {
+                                        sentencia+=lexer.lexeme;
+                                        String nuevaSentencia = sentencia;
+                                        ListadoDeSentencias.add(nuevaSentencia);
+                                        sentencia = "";
+                                    }                           
+                                }
+                                else{
+                                  sentencia+=lexer.lexeme + " ";
+                                }
                         }
                         else{
-                          sentencia+=lexer.lexeme + " ";
+                            sentencia += lexer.lexeme + " ";
                         }
                         break;
                     

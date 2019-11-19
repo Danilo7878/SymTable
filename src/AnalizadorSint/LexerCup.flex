@@ -10,6 +10,18 @@ import java_cup.runtime.Symbol;
 %char
 %column
 
+
+Letra = [a-zA-Z]+
+LetraOguion = [a-zA-Z_]+
+Digito = [0-9]+
+Exponente = [eE]
+Bit = [0-1]|"NULL"
+Signo = [+-]?
+Decimal = {Digito}\.{Digito}*
+Identificador = {Letra} ({LetraOguion} | {Digito})*
+Variable = "@" {Identificador}
+Float = {Signo} {Decimal} ({Exponente} {Signo} {Digito})?
+String = ("'")[^'\r\n]*("'")
 espacio = [" "|"\t"|"\r"|"\n"]+
 
 Comparador = "<"|"<="|">"|">="|"<>"|"!="|"!>"|"!<"
@@ -23,6 +35,12 @@ Comparador = "<"|"<="|">"|">="|"<>"|"!="|"!>"|"!<"
 %%
 {espacio} {/*Ignore*/}
 {Comparador} {return new Symbol(sym.Comparador, yychar, yyline, yytext());}
+{Digito} {return new Symbol(sym.Int, yychar, yyline, yytext());}
+{Identificador} {return new Symbol(sym.Id, yychar, yyline, yytext());}
+{Variable} {{return new Symbol(sym.Var, yychar, yyline, yytext());}}
+{Bit} {return new Symbol(sym.Bit, yychar, yyline, yytext());}
+{Float} {return new Symbol(sym.Float, yychar, yyline, yytext());}
+{String} {return new Symbol(sym.String, yychar, yyline, yytext());}
 TRUNCATE {return new Symbol(sym.Truncate, yychar, yyline, yytext());}
 TABLE {return new Symbol(sym.Table, yychar, yyline, yytext());}
 ON {return new Symbol(sym.On, yychar, yyline, yytext());}
@@ -72,12 +90,7 @@ SAVE {return new Symbol(sym.Save, yychar, yyline, yytext());}
 ROLLBACK {return new Symbol(sym.Rollback, yychar, yyline, yytext());}
 GO {return new Symbol(sym.Go, yychar, yyline, yytext());}
 DECLARE {return new Symbol(sym.Declare, yychar, yyline, yytext());}
-Identificador {return new Symbol(sym.Id, yychar, yyline, yytext());}
-Variable {{return new Symbol(sym.Var, yychar, yyline, yytext());}}
-Bit {return new Symbol(sym.Bit, yychar, yyline, yytext());}
-Int {return new Symbol(sym.Int, yychar, yyline, yytext());}
-Float {return new Symbol(sym.Float, yychar, yyline, yytext());}
-String {return new Symbol(sym.String, yychar, yyline, yytext());}
+USE {return new Symbol(sym.Use, yychar, yyline, yytext());}
 "." {return new Symbol(sym.Punto, yychar, yyline, yytext());}
 "," {return new Symbol(sym.Coma, yychar, yyline, yytext());}
 ";" {return new Symbol(sym.Punto_Coma, yychar, yyline, yytext());}

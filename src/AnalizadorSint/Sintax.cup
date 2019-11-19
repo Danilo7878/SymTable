@@ -18,22 +18,29 @@ parser code
 terminal Truncate,Table,On,Asc,Desc,Where,And,In,Is,Not,Or,Null,As,Default,Set,FloatR,Varchar,IntR,BitR,Declare,
 Go,Id,Bit,Int,Float,String,Punto,Coma,Punto_Coma,Igual,Parentesis_a,Parentesis_c,Mas,Menos,Asterisco,Dividir,Comparador,
 Error,Var,From,Distinct,Cuadro,Bracket_a,Bracket_c,Select,Avg,Min,Max,Count,Sum,Join,Inner,Left,Outer,Right,Full,
-Commit,All,Insert,Top,Percent,Into,Openquery,Values,Group,Order,By,Begin,Tran,Transaction,Rollback,Save;
+Commit,All,Insert,Top,Percent,Into,Openquery,Values,Group,Order,By,Begin,Tran,Transaction,Rollback,Save,Use;
 
-non terminal  INICIO,SENTENCIA,DML,DDL,TCL,TSQL,SELECT,ASC,
-              INSERT,TRUNCATE,TABLENAME,DATABASE_NAMES,WHERE_INDEX,COLUMN_NAMES_ASC,FILTER,CONJUNCT,
-              DISJUNCT,COMPARACION,CONSTANT,CONSTANTS,COMPARADOR,FIN,COLUMN_EXPRESION,T,F,
+non terminal  INICIO,SENTENCIA,DML,DDL,TCL,TSQL,SELECT,ASC,SET,
+              INSERT,TRUNCATE,TABLENAME,DATABASE_NAMES,WHERE_INDEX,COLUMN_NAMES_ASC,FILTER,CONJUNCT,USE,
+              DISJUNCT,COMPARACION,CONSTANT,CONSTANTS,COMPARADOR,FIN,COLUMN_EXPRESION,T,F,VARIABLES,
               TOP,PERCENT,INTO,OBJECT,TABLENAME_2,COLUMN_LIST,VALUES,VALUES_OPTIONS,VALUES_OPTION,VALUES_2,
-              ALL_DISTINCT,SELECT_LIST,CAMPO_AS,CAMPO,ALIAS,ID_M,METHOD,METHOD_NAME,
+              ALL_DISTINCT,SELECT_LIST,CAMPO_AS,CAMPO,ALIAS,ID_M,METHOD,METHOD_NAME,DECLA,TIPO_DATO,
               PARAMETROS,FROM,JOINS,JOIN,JOIN_TYPE,TABLENAME_3,GROUP_BY,ORDER_BY,BEGIN,COMMIT,ROLLBACK,SAVEPOINT,TRAN;
 
 start with INICIO;
 
 INICIO ::= SENTENCIA FIN;
-SENTENCIA ::= DML|DDL|TCL|TSQL;
+SENTENCIA ::= DML|DDL|TCL|TSQL|DECLA|SET|USE;
+
+USE ::= Use Id;
+
+DECLA ::= Declare VARIABLES TIPO_DATO;
+VARIABLES ::= Var|Var Coma VARIABLES;
+
+SET ::= Set Igual COLUMN_EXPRESION;
 
 TCL ::= BEGIN|COMMIT|ROLLBACK|SAVEPOINT;
-BEGIN ::= Begin TRAN Var|Begin TRAN Var Id;
+BEGIN ::= Begin TRAN Var|Begin TRAN Id|Begin TRAN;
 TRAN::= Tran|Transaction;
 COMMIT ::= Commit TRAN|Commit|Commit TRAN Var|Commit TRAN Id;
 ROLLBACK ::= Rollback TRAN|Rollback TRAN Var|Rollback TRAN Id;
@@ -120,6 +127,8 @@ COMPARADOR ::= Comparador|Igual|Is|Is Not;
 COLUMN_EXPRESION ::= COLUMN_EXPRESION Mas T|COLUMN_EXPRESION Menos T|T;
 T ::= T Asterisco F| T Dividir F|F;
 F ::= Int|Float|Bit|String|Id|Var|Parentesis_a COLUMN_EXPRESION Parentesis_c;
+
+TIPO_DATO ::= IntR|FloatR|Varchar|BitR;
 
 FIN ::= Punto_Coma|Go;
 

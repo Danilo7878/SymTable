@@ -33,14 +33,13 @@ class LexerCup implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\1\1\1\1\67\1\67\1\1\22\0\1\1\1\5\6\0"+
-    "\1\56\1\57\1\62\1\60\1\54\1\61\1\53\1\63\12\0\1\64"+
-    "\1\55\1\2\1\3\1\4\2\0\1\13\1\15\1\12\1\21\1\14"+
-    "\1\25\1\33\1\23\1\24\1\0\1\35\1\16\1\27\1\11\1\17"+
-    "\1\30\1\31\1\7\1\20\1\6\1\10\1\26\1\22\1\34\1\32"+
-    "\1\0\1\65\1\0\1\66\3\0\1\45\1\50\1\44\1\36\1\37"+
-    "\1\43\1\52\1\0\1\42\2\0\1\51\1\0\1\40\1\46\2\0"+
-    "\1\47\1\0\1\41\7\0\1\1\10\0\1\67\u1fa2\0\1\67\1\67"+
+    "\11\0\1\12\1\11\1\31\1\31\1\11\22\0\1\12\1\16\5\0"+
+    "\1\10\1\21\1\22\1\24\1\23\1\17\1\5\1\6\1\25\2\3"+
+    "\10\3\1\26\1\20\1\13\1\14\1\15\1\0\1\7\1\1\1\1"+
+    "\1\1\1\1\1\4\1\1\1\1\1\1\1\1\1\1\1\1\1\1"+
+    "\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1"+
+    "\1\1\1\1\1\1\1\1\1\27\1\0\1\30\1\0\1\2\1\0"+
+    "\4\1\1\4\25\1\1\0\1\12\10\0\1\31\u1fa2\0\1\31\1\31"+
     "\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
@@ -54,24 +53,13 @@ class LexerCup implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\3\22\1\1\5"+
-    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
-    "\1\1\1\16\1\17\1\3\12\0\1\20\3\0\1\21"+
-    "\2\0\1\22\1\23\10\0\1\24\1\25\14\0\1\26"+
-    "\1\27\3\0\1\30\3\0\1\31\2\0\1\32\1\33"+
-    "\1\34\1\35\1\0\1\36\1\37\3\0\1\40\1\0"+
-    "\1\41\7\0\1\42\3\0\1\43\7\0\1\44\1\45"+
-    "\3\0\1\46\3\0\1\47\3\0\1\50\2\0\1\51"+
-    "\3\0\1\52\3\0\1\53\3\0\1\54\1\55\11\0"+
-    "\1\56\1\0\1\57\1\60\1\0\1\61\1\62\6\0"+
-    "\1\63\1\64\2\0\1\65\1\66\4\0\1\67\3\0"+
-    "\1\70\1\0\1\71\1\72\3\0\1\73\2\0\1\74"+
-    "\6\0\1\75\1\76\2\0\1\77\1\0\1\100\1\101"+
-    "\1\0\1\102\1\0\1\103\1\0\1\104\1\0\1\105"+
-    "\3\0\1\106\2\0\1\107";
+    "\1\0\1\1\1\2\1\3\1\4\1\5\2\1\1\6"+
+    "\1\7\1\10\1\7\1\1\1\11\1\12\1\13\1\14"+
+    "\1\15\1\16\1\17\1\1\1\20\1\21\1\22\1\0"+
+    "\1\23\1\0\1\24\1\7\1\25\1\0\1\22\1\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[228];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -96,38 +84,14 @@ class LexerCup implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\70\0\160\0\250\0\70\0\340\0\u0118\0\u0150"+
-    "\0\u0188\0\u01c0\0\u01f8\0\u0230\0\u0268\0\u02a0\0\u02d8\0\u0310"+
-    "\0\u0348\0\u0380\0\u03b8\0\u03f0\0\u0428\0\u0460\0\u0498\0\u04d0"+
-    "\0\70\0\70\0\70\0\70\0\70\0\70\0\70\0\70"+
-    "\0\70\0\u0508\0\70\0\70\0\70\0\u0540\0\u0578\0\u05b0"+
-    "\0\u05e8\0\u0620\0\u0658\0\u0690\0\u06c8\0\u0700\0\u0738\0\u0770"+
-    "\0\u07a8\0\u07e0\0\u0818\0\70\0\u0850\0\u0888\0\u08c0\0\70"+
-    "\0\u08f8\0\u0930\0\u0968\0\u09a0\0\u09d8\0\u0a10\0\u0a48\0\u0a80"+
-    "\0\u0ab8\0\70\0\u0af0\0\u0b28\0\u0b60\0\u0b98\0\u0bd0\0\u0c08"+
-    "\0\u0c40\0\u0c78\0\u0cb0\0\u0ce8\0\u0d20\0\u0d58\0\70\0\70"+
-    "\0\u0d90\0\u0dc8\0\u0e00\0\70\0\u0e38\0\u0e70\0\u0ea8\0\70"+
-    "\0\u0ee0\0\u0f18\0\70\0\70\0\70\0\70\0\u0f50\0\70"+
-    "\0\70\0\u0f88\0\u0fc0\0\u0ff8\0\70\0\u1030\0\70\0\u1068"+
-    "\0\u10a0\0\u10d8\0\u1110\0\u1148\0\u1180\0\u11b8\0\u11f0\0\u1228"+
-    "\0\u1260\0\u1298\0\70\0\u12d0\0\u1308\0\u1340\0\u1378\0\u13b0"+
-    "\0\u13e8\0\u1420\0\70\0\70\0\u1458\0\u1490\0\u14c8\0\u1500"+
-    "\0\u1538\0\u1570\0\u15a8\0\70\0\u15e0\0\u1618\0\u1650\0\70"+
-    "\0\u1688\0\u16c0\0\70\0\u16f8\0\u1730\0\u1768\0\70\0\u17a0"+
-    "\0\u17d8\0\u1810\0\70\0\u1848\0\u1880\0\u18b8\0\70\0\70"+
-    "\0\u18f0\0\u1928\0\u1960\0\u1998\0\u19d0\0\u1a08\0\u1a40\0\u1a78"+
-    "\0\u1ab0\0\70\0\u1ae8\0\70\0\70\0\u1b20\0\70\0\70"+
-    "\0\u1b58\0\u1b90\0\u1bc8\0\u1c00\0\u1c38\0\u1c70\0\70\0\70"+
-    "\0\u1ca8\0\u1ce0\0\70\0\70\0\u1d18\0\u1d50\0\u1d88\0\u1dc0"+
-    "\0\70\0\u1df8\0\u1e30\0\u1e68\0\70\0\u1ea0\0\70\0\70"+
-    "\0\u1ed8\0\u1f10\0\u1f48\0\70\0\u1f80\0\u1fb8\0\70\0\u1ff0"+
-    "\0\u2028\0\u2060\0\u2098\0\u20d0\0\u2108\0\70\0\70\0\u2140"+
-    "\0\u2178\0\70\0\u21b0\0\70\0\70\0\u21e8\0\70\0\u2220"+
-    "\0\70\0\u2258\0\70\0\u2290\0\70\0\u22c8\0\u2300\0\u2338"+
-    "\0\70\0\u2370\0\u23a8\0\70";
+    "\0\0\0\32\0\64\0\116\0\150\0\32\0\202\0\234"+
+    "\0\266\0\320\0\32\0\352\0\u0104\0\32\0\32\0\32"+
+    "\0\32\0\150\0\32\0\32\0\u011e\0\32\0\32\0\u0138"+
+    "\0\u0152\0\u016c\0\234\0\32\0\32\0\32\0\u0186\0\u01a0"+
+    "\0\u01a0";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[228];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -150,63 +114,18 @@ class LexerCup implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
-    "\1\2\1\12\1\13\1\14\1\2\1\15\1\16\1\17"+
-    "\1\20\1\21\1\22\1\2\1\23\1\24\1\25\1\26"+
-    "\1\27\2\2\1\30\17\2\1\31\1\32\1\33\1\34"+
-    "\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44"+
-    "\72\0\1\3\71\0\2\45\66\0\1\45\66\0\3\45"+
-    "\72\0\1\46\3\0\1\47\3\0\1\50\67\0\1\51"+
-    "\4\0\1\52\53\0\1\53\6\0\1\54\67\0\1\55"+
-    "\61\0\1\56\4\0\1\57\1\0\1\60\5\0\1\61"+
-    "\55\0\1\62\7\0\1\63\5\0\1\64\7\0\1\65"+
-    "\41\0\1\66\62\0\1\67\1\0\1\70\16\0\1\71"+
-    "\47\0\1\72\2\0\1\73\1\74\24\0\1\75\42\0"+
-    "\1\76\7\0\1\77\66\0\1\100\55\0\1\101\6\0"+
-    "\1\102\15\0\1\103\1\0\1\104\36\0\1\105\1\106"+
-    "\5\0\1\107\32\0\1\110\31\0\1\111\31\0\1\112"+
-    "\35\0\1\113\10\0\1\114\57\0\1\115\62\0\1\116"+
-    "\7\0\1\117\134\0\1\120\13\0\1\121\2\0\1\122"+
-    "\71\0\1\123\102\0\1\124\55\0\1\125\104\0\1\126"+
-    "\52\0\1\127\57\0\1\130\71\0\1\131\16\0\1\132"+
-    "\61\0\1\133\64\0\1\134\63\0\1\135\110\0\1\136"+
-    "\67\0\1\137\42\0\1\140\122\0\1\141\53\0\1\142"+
-    "\63\0\1\143\62\0\1\144\102\0\1\145\66\0\1\146"+
-    "\47\0\1\147\7\0\1\150\120\0\1\151\32\0\1\152"+
-    "\5\0\1\153\4\0\1\154\62\0\1\155\63\0\1\156"+
-    "\61\0\1\157\2\0\1\160\6\0\1\161\106\0\1\162"+
-    "\71\0\1\163\45\0\1\164\66\0\1\165\70\0\1\166"+
-    "\116\0\1\167\30\0\1\170\6\0\1\171\120\0\1\172"+
-    "\54\0\1\173\44\0\1\174\65\0\1\175\77\0\1\176"+
-    "\61\0\1\177\67\0\1\200\74\0\1\201\67\0\1\202"+
-    "\74\0\1\203\62\0\1\204\62\0\1\205\105\0\1\206"+
-    "\64\0\1\207\51\0\1\210\75\0\1\211\64\0\1\212"+
-    "\72\0\1\213\67\0\1\214\115\0\1\215\43\0\1\216"+
-    "\63\0\1\217\70\0\1\220\62\0\1\221\70\0\1\222"+
-    "\77\0\1\223\64\0\1\224\67\0\1\225\113\0\1\226"+
-    "\56\0\1\227\56\0\1\230\64\0\1\231\121\0\1\232"+
-    "\34\0\1\233\65\0\1\234\121\0\1\235\37\0\1\236"+
-    "\65\0\1\237\71\0\1\240\75\0\1\241\63\0\1\242"+
-    "\70\0\1\243\60\0\1\244\67\0\1\245\105\0\1\246"+
-    "\54\0\1\247\65\0\1\250\111\0\1\251\50\0\1\252"+
-    "\115\0\1\253\42\0\1\254\64\0\1\255\103\0\1\256"+
-    "\57\0\1\257\62\0\1\260\67\0\1\261\121\0\1\262"+
-    "\34\0\1\263\122\0\1\264\51\0\1\265\60\0\1\266"+
-    "\120\0\1\267\36\0\1\270\103\0\1\271\52\0\1\272"+
-    "\67\0\1\273\67\0\1\274\62\0\1\275\71\0\1\276"+
-    "\65\0\1\277\133\0\1\300\24\0\1\301\76\0\1\302"+
-    "\62\0\1\303\64\0\1\304\123\0\1\305\40\0\1\306"+
-    "\74\0\1\307\117\0\1\310\30\0\1\311\64\0\1\312"+
-    "\73\0\1\313\67\0\1\314\71\0\1\315\67\0\1\316"+
-    "\61\0\1\317\73\0\1\320\120\0\1\321\33\0\1\322"+
-    "\131\0\1\323\24\0\1\324\75\0\1\325\61\0\1\326"+
-    "\116\0\1\327\41\0\1\330\66\0\1\331\123\0\1\332"+
-    "\64\0\1\333\54\0\1\334\75\0\1\335\101\0\1\336"+
-    "\42\0\1\337\115\0\1\340\33\0\1\341\114\0\1\342"+
-    "\77\0\1\343\70\0\1\344\20\0";
+    "\1\2\1\3\1\2\1\4\1\3\1\5\1\6\1\7"+
+    "\1\10\2\11\1\12\1\13\1\14\1\15\1\16\1\17"+
+    "\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27"+
+    "\34\0\4\3\30\0\1\4\2\0\1\30\26\0\1\31"+
+    "\27\0\1\32\2\0\1\32\25\0\10\33\1\34\1\0"+
+    "\20\33\11\0\2\11\33\0\2\35\30\0\1\35\30\0"+
+    "\3\35\42\0\1\36\6\0\1\30\1\37\30\0\1\31"+
+    "\2\0\1\30\24\0\4\32\30\0\1\40\1\0\1\41"+
+    "\15\0\1\41\11\0\1\40\26\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[9184];
+    int [] result = new int[442];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -244,21 +163,12 @@ class LexerCup implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\1\11\23\1\11\11\1\1\3\11"+
-    "\12\0\1\1\3\0\1\11\2\0\1\1\1\11\10\0"+
-    "\1\1\1\11\14\0\2\11\3\0\1\11\3\0\1\11"+
-    "\2\0\4\11\1\0\2\11\3\0\1\11\1\0\1\11"+
-    "\7\0\1\1\3\0\1\11\7\0\2\11\3\0\1\1"+
-    "\3\0\1\11\3\0\1\11\2\0\1\11\3\0\1\11"+
-    "\3\0\1\11\3\0\2\11\11\0\1\11\1\0\2\11"+
-    "\1\0\2\11\6\0\2\11\2\0\2\11\4\0\1\11"+
-    "\3\0\1\11\1\0\2\11\3\0\1\11\2\0\1\11"+
-    "\6\0\2\11\2\0\1\11\1\0\2\11\1\0\1\11"+
-    "\1\0\1\11\1\0\1\11\1\0\1\11\3\0\1\11"+
-    "\2\0\1\11";
+    "\1\0\1\11\3\1\1\11\4\1\1\11\2\1\4\11"+
+    "\1\1\2\11\1\1\2\11\1\1\1\0\1\1\1\0"+
+    "\3\11\1\0\1\1\1\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[228];
+    int [] result = new int[33];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -359,7 +269,7 @@ class LexerCup implements java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 194) {
+    while (i < 174) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -728,357 +638,107 @@ class LexerCup implements java_cup.runtime.Scanner {
             { return new Symbol(sym.Error, yychar, yyline, yytext());
             } 
             // fall through
-          case 72: break;
+          case 22: break;
           case 2: 
-            { /*Ignore*/
+            { return new Symbol(sym.Id, yychar, yyline, yytext());
             } 
             // fall through
-          case 73: break;
+          case 23: break;
           case 3: 
-            { return new Symbol(sym.Comparador, yychar, yyline, yytext());
+            { return new Symbol(sym.Int, yychar, yyline, yytext());
             } 
             // fall through
-          case 74: break;
+          case 24: break;
           case 4: 
-            { return new Symbol(sym.Igual, yychar, yyline, yytext());
+            { return new Symbol(sym.Menos, yychar, yyline, yytext());
             } 
             // fall through
-          case 75: break;
+          case 25: break;
           case 5: 
             { return new Symbol(sym.Punto, yychar, yyline, yytext());
             } 
             // fall through
-          case 76: break;
+          case 26: break;
           case 6: 
+            { /*Ignore*/
+            } 
+            // fall through
+          case 27: break;
+          case 7: 
+            { return new Symbol(sym.Comparador, yychar, yyline, yytext());
+            } 
+            // fall through
+          case 28: break;
+          case 8: 
+            { return new Symbol(sym.Igual, yychar, yyline, yytext());
+            } 
+            // fall through
+          case 29: break;
+          case 9: 
             { return new Symbol(sym.Coma, yychar, yyline, yytext());
             } 
             // fall through
-          case 77: break;
-          case 7: 
+          case 30: break;
+          case 10: 
             { return new Symbol(sym.Punto_Coma, yychar, yyline, yytext());
             } 
             // fall through
-          case 78: break;
-          case 8: 
+          case 31: break;
+          case 11: 
             { return new Symbol(sym.Parentesis_a, yychar, yyline, yytext());
             } 
             // fall through
-          case 79: break;
-          case 9: 
+          case 32: break;
+          case 12: 
             { return new Symbol(sym.Parentesis_c, yychar, yyline, yytext());
             } 
             // fall through
-          case 80: break;
-          case 10: 
+          case 33: break;
+          case 13: 
             { return new Symbol(sym.Mas, yychar, yyline, yytext());
             } 
             // fall through
-          case 81: break;
-          case 11: 
-            { return new Symbol(sym.Menos, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 82: break;
-          case 12: 
+          case 34: break;
+          case 14: 
             { return new Symbol(sym.Asterisco, yychar, yyline, yytext());
             } 
             // fall through
-          case 83: break;
-          case 13: 
+          case 35: break;
+          case 15: 
             { return new Symbol(sym.Dividir, yychar, yyline, yytext());
             } 
             // fall through
-          case 84: break;
-          case 14: 
+          case 36: break;
+          case 16: 
             { return new Symbol(sym.Bracket_a, yychar, yyline, yytext());
             } 
             // fall through
-          case 85: break;
-          case 15: 
+          case 37: break;
+          case 17: 
             { return new Symbol(sym.Bracket_c, yychar, yyline, yytext());
             } 
             // fall through
-          case 86: break;
-          case 16: 
-            { return new Symbol(sym.As, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 87: break;
-          case 17: 
-            { return new Symbol(sym.By, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 88: break;
+          case 38: break;
           case 18: 
-            { return new Symbol(sym.Or, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 89: break;
-          case 19: 
-            { return new Symbol(sym.On, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 90: break;
-          case 20: 
-            { return new Symbol(sym.In, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 91: break;
-          case 21: 
-            { return new Symbol(sym.Is, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 92: break;
-          case 22: 
-            { return new Symbol(sym.Go, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 93: break;
-          case 23: 
-            { return new Symbol(sym.Cuadro, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 94: break;
-          case 24: 
-            { return new Symbol(sym.Top, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 95: break;
-          case 25: 
-            { return new Symbol(sym.Not, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 96: break;
-          case 26: 
-            { return new Symbol(sym.And, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 97: break;
-          case 27: 
-            { return new Symbol(sym.All, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 98: break;
-          case 28: 
-            { return new Symbol(sym.Asc, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 99: break;
-          case 29: 
-            { return new Symbol(sym.Avg, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 100: break;
-          case 30: 
-            { return new Symbol(sym.BitR, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 101: break;
-          case 31: 
-            { return new Symbol(sym.Bit, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 102: break;
-          case 32: 
-            { return new Symbol(sym.Sum, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 103: break;
-          case 33: 
-            { return new Symbol(sym.Set, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 104: break;
-          case 34: 
-            { return new Symbol(sym.IntR, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 105: break;
-          case 35: 
-            { return new Symbol(sym.Int, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 106: break;
-          case 36: 
-            { return new Symbol(sym.Max, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 107: break;
-          case 37: 
-            { return new Symbol(sym.Min, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 108: break;
-          case 38: 
-            { return new Symbol(sym.Tran, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 109: break;
-          case 39: 
-            { return new Symbol(sym.Null, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 110: break;
-          case 40: 
-            { return new Symbol(sym.Left, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 111: break;
-          case 41: 
-            { return new Symbol(sym.Save, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 112: break;
-          case 42: 
-            { return new Symbol(sym.Desc, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 113: break;
-          case 43: 
-            { return new Symbol(sym.Into, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 114: break;
-          case 44: 
-            { return new Symbol(sym.From, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 115: break;
-          case 45: 
-            { return new Symbol(sym.Full, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 116: break;
-          case 46: 
-            { return new Symbol(sym.Table, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 117: break;
-          case 47: 
-            { return new Symbol(sym.Right, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 118: break;
-          case 48: 
-            { return new Symbol(sym.Count, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 119: break;
-          case 49: 
-            { return new Symbol(sym.Begin, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 120: break;
-          case 50: 
-            { return new Symbol(sym.Order, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 121: break;
-          case 51: 
-            { return new Symbol(sym.Where, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 122: break;
-          case 52: 
-            { return new Symbol(sym.Inner, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 123: break;
-          case 53: 
-            { return new Symbol(sym.FloatR, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 124: break;
-          case 54: 
             { return new Symbol(sym.Float, yychar, yyline, yytext());
             } 
             // fall through
-          case 125: break;
-          case 55: 
-            { return new Symbol(sym.Group, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 126: break;
-          case 56: 
-            { return new Symbol(sym.Commit, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 127: break;
-          case 57: 
-            { return new Symbol(sym.Select, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 128: break;
-          case 58: 
-            { return new Symbol(sym.String, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 129: break;
-          case 59: 
-            { return new Symbol(sym.Insert, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 130: break;
-          case 60: 
-            { return new Symbol(sym.Values, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 131: break;
-          case 61: 
-            { return new Symbol(sym.Declare, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 132: break;
-          case 62: 
-            { return new Symbol(sym.Default, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 133: break;
-          case 63: 
-            { return new Symbol(sym.Varchar, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 134: break;
-          case 64: 
-            { return new Symbol(sym.Percent, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 135: break;
-          case 65: 
-            { return new Symbol(sym.Truncate, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 136: break;
-          case 66: 
-            { return new Symbol(sym.Rollback, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 137: break;
-          case 67: 
-            { return new Symbol(sym.Distinct, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 138: break;
-          case 68: 
+          case 39: break;
+          case 19: 
             { {return new Symbol(sym.Var, yychar, yyline, yytext());}
             } 
             // fall through
-          case 139: break;
-          case 69: 
-            { return new Symbol(sym.Openquery, yychar, yyline, yytext());
+          case 40: break;
+          case 20: 
+            { return new Symbol(sym.String, yychar, yyline, yytext());
             } 
             // fall through
-          case 140: break;
-          case 70: 
-            { return new Symbol(sym.Transaction, yychar, yyline, yytext());
+          case 41: break;
+          case 21: 
+            { return new Symbol(sym.Cuadro, yychar, yyline, yytext());
             } 
             // fall through
-          case 141: break;
-          case 71: 
-            { return new Symbol(sym.Id, yychar, yyline, yytext());
-            } 
-            // fall through
-          case 142: break;
+          case 42: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
